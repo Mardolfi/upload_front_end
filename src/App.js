@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from "react-redux";
+import styled from "styled-components";
+import Upload from "./components/Upload";
+import GlobalStyle from "./styles/GlobalStyle";
+import store from './store/store'
+import FileList from "./components/FileList";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Container>
+        <GlobalStyle />
+        <Content>
+          <Upload />
+          <FileList />
+        </Content>
+      </Container>
+    </Provider>
   );
 }
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Content = styled.div`
+  padding: 12px;
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
 
 export default App;
