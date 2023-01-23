@@ -2,7 +2,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { deleteFile } from "../store/actions";
-import { MdLink, MdCheckCircle, MdError } from "react-icons/md";
+import { MdLink, MdCheckCircle, MdError, MdDownload } from "react-icons/md";
 
 function FileList({ files, removeFile }) {
   return (
@@ -26,6 +26,11 @@ function FileList({ files, removeFile }) {
                 </FileName>
               </FileInfo>
               <ActionControl>
+                {file.uploaded && (
+                  <a href={`http://localhost:3333/posts/download/${file.id}`}>
+                    <MdDownload size={24} color={"#222"} />
+                  </a>
+                )}
                 {file.url && (
                   <a
                     href={file.url}
@@ -61,10 +66,10 @@ function FileList({ files, removeFile }) {
   );
 }
 
-const ActionControl= styled.div`
+const ActionControl = styled.div`
   display: flex;
   gap: 5px;
-`
+`;
 
 const File = styled.div`
   padding: 0px 10px;

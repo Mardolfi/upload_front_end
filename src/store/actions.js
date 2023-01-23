@@ -1,5 +1,4 @@
 import { filesize } from "filesize";
-import { v4 } from "uuid";
 import api from "../services/api";
 
 export function uploadFile(files) {
@@ -70,7 +69,7 @@ export function uploadInitial() {
         file,
         name: file.name,
         preview: file.url,
-        id: v4(),
+        id: file._id,
         readableSize: filesize(file.size),
         progress: 100,
         uploaded: true,
